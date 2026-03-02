@@ -1,0 +1,93 @@
+<!DOCTYPE html><html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ravi Study Hub Pro</title><style>
+body{font-family:Arial;margin:0;background:#f4f6fb;text-align:center;transition:0.3s}
+header{background:linear-gradient(45deg,#4e73df,#1cc88a);color:white;padding:20px}
+h2{margin-top:30px}
+input,button,select{padding:10px;margin:6px;width:240px;border-radius:6px;border:1px solid #ccc}
+button{background:#4e73df;color:white;border:none;cursor:pointer}
+button:hover{opacity:0.9}
+.card{background:white;margin:15px auto;padding:15px;width:280px;border-radius:12px;box-shadow:0 5px 15px rgba(0,0,0,0.1)}
+.dark{background:#121212;color:white}
+.dark .card{background:#1e1e1e}
+.footer{margin-top:40px;padding:15px;background:#222;color:white}
+</style>
+</head>
+<body>
+<header>
+<h1>📚 Ravi Study Hub Pro</h1>
+<p>Learn Smart, Grow Fast 🚀</p>
+<button onclick="toggleDark()">🌙 Toggle Dark Mode</button>
+</header><h2>🔐 Login / Signup</h2>
+<input id="user" placeholder="Username">
+<input id="pass" type="password" placeholder="Password">
+<br>
+<button onclick="signup()">Signup</button>
+<button onclick="login()">Login</button><h2>📝 Add Notes</h2>
+<select id="subject">
+<option>Math</option>
+<option>Physics</option>
+<option>Chemistry</option>
+<option>Computer</option>
+<option>English</option>
+<option>Hindi</option>
+</select>
+<br>
+<input id="note" placeholder="Write Note">
+<br>
+<button onclick="addNote()">Add Note</button>
+<button onclick="downloadNotes()">Download PDF</button><h2>🔍 Search Notes</h2>
+<input id="search" onkeyup="showNotes()" placeholder="Search notes"><h2>📖 Your Notes</h2>
+<div id="notes"></div><div class="footer">
+© 2026 Ravi Study Hub Pro | Made by Ravi 💻
+</div><script>
+function signup(){
+localStorage.setItem("user",user.value)
+localStorage.setItem("pass",pass.value)
+alert("Signup Success Ravi ✅")
+}
+
+function login(){
+if(user.value==localStorage.getItem("user") &&
+   pass.value==localStorage.getItem("pass"))
+alert("Login Success Ravi 🎉")
+else alert("Wrong Login ❌")
+}
+
+function addNote(){
+let notes = JSON.parse(localStorage.getItem("notes")||"[]")
+notes.push({sub:subject.value,text:note.value})
+localStorage.setItem("notes",JSON.stringify(notes))
+showNotes()
+note.value=""
+}
+
+function showNotes(){
+let s = search.value.toLowerCase()
+let notesData = JSON.parse(localStorage.getItem("notes")||"[]")
+notes.innerHTML=""
+notesData.filter(n=>n.text.toLowerCase().includes(s))
+.forEach(n=>{
+notes.innerHTML += `<div class='card'><b>${n.sub}</b><p>${n.text}</p></div>`
+})
+}
+showNotes()
+
+function toggleDark(){document.body.classList.toggle("dark")}
+
+function downloadNotes(){
+let notesData = JSON.parse(localStorage.getItem("notes")||"[]")
+let content = "Ravi Study Hub Notes\n\n"
+notesData.forEach(n=>{
+content += n.sub + " - " + n.text + "\n\n"
+})
+let blob = new Blob([content], { type: 'application/pdf' })
+let link = document.createElement('a')
+link.href = URL.createObjectURL(blob)
+link.download = 'Ravi_Study_Notes.pdf'
+link.click()
+}
+</script></body>
+</html>
