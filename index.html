@@ -1,72 +1,137 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RSA Ravi Study App</title>
+<title>Ravi Study Hub</title>
 
-<link rel="manifest" href="manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
 
-<!-- Splash Screen -->
-<div id="splash">RSA Ravi Study App</div>
-
-<!-- Login Page -->
-<div id="loginPage" class="card">
-<h2>Login</h2>
-<input type="text" id="username" placeholder="Enter Name">
-<button onclick="login()">Login</button>
-</div>
-
-<!-- Main App -->
-<div id="app" style="display:none;">
-
-<header>
-<span id="welcome"></span>
-<button onclick="logout()">Logout</button>
-</header>
-
-<nav>
-<button onclick="showSection('notes')">Notes</button>
-<button onclick="showSection('profile')">Profile</button>
-<button onclick="showSection('upload')">Upload PDF</button>
+<nav class="navbar">
+  <div class="logo">Ravi Study Hub</div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#subjects">Subjects</a></li>
+    <li><a href="#About">About</a></li>
+    <li><a href="">Contact</a></li>
+  </ul>
+  <div class="top-bar">
+    <button id="darkToggle">🌙 Dark Mode</button>
+  </div>
 </nav>
 
-<!-- Notes Section -->
-<div id="notes" class="section">
-<h3>Select Subject</h3>
-<select id="subjectSelect">
-<option>Applied Mathematics 2</option>
-<option>Applied Chemistry</option>
-<option>Engineering Mechanics</option>
-<option>Basic Electical Engineering</option>
-<option>Environmental Science</option>
-<option>Essenital of Language & Communication 2</option>
-</select>
+<section class="hero">
+  <h1>Premium Study Notes Platform</h1>
+  <p>All Subjects Notes | Clean | Easy | Smart Learning</p>
+  <a href="#subjects" class="btn">Explore Notes</a>
+</section>
 
-<input type="text" id="noteInput" placeholder="Write note">
-<button onclick="addNote()">Add</button>
+<section id="subjects" class="subjects">
+  <a href="Subjects notes/Math.html"> <div class="card"> Applied Mathematics 2</div></a>
+  <a href="Subjects notes/Mechanics.html">  <div class="card"> Engineering mechanics</div></a>
+  <a href="Subjects notes/Chemistry.html"> <div class="card"> Applied Chemistry</div></a>
+  <a href="Subjects notes/Electical.html"> <div class="card"> Basic Electical Engineering</div></a>
+  <a href="Subjects notes/Science.html"> <div class="card"> Environmental Science</div></a>
+  <a href="Subjects notes/English.html"> <div class="card"> Essenitiasl of Language & Communication</div></a>
+</section>
+<section class="about" id="about">
+  <div class="container">
+    
+    <div class="about-content">
+      
+      <div class="about-text">
+        <h2>About Me</h2>
+        <h3>Hello, I'm Ravi 👋</h3>
+        <p>
+          I am a passionate Web Developer and Student. I love building
+          responsive and user-friendly websites using HTML, CSS, and JavaScript.
+        </p>
+        <p>
+          My goal is to improve my skills daily and create helpful
+          projects for students like Study Notes, AI Tools, and more.
+        </p>
 
-<div id="notesList"></div>
-</div>
+        <div class="about-buttons">
+          <a href="#contact" class="btn">Contact Me</a>
+          <a href="#" class="btn-outline">Download CV</a>
+        </div>
+      </div>
 
-<!-- Profile Section -->
-<div id="profile" class="section" style="display:none;">
-<h3>Profile</h3>
-<p id="profileName"></p>
-</div>
+      <div class="about-image">
+        <img src="Profile image.jpg" alt="Ravi Profile">
+      </div>
 
-<!-- Upload Section -->
-<div id="upload" class="section" style="display:none;">
-<h3>Upload PDF</h3>
-<input type="file" accept="application/pdf" onchange="uploadPDF(event)">
-<div id="pdfList"></div>
-</div>
+    </div>
+  </div>
+</section>
+<section class="contact" id="contact">
+  <div class="container">
+    
+    <div class="section-title">
+      <h2>Contact Me</h2>
+      <p>Feel free to reach out for collaboration or any questions.</p>
+    </div>
 
-</div>
+    <div class="contact-content">
 
-<script src="app.js"></script>
+      <!-- Left Side Info -->
+      <div class="contact-info">
+        <div class="info-box">
+          <h4>Email</h4>
+          <p>ravi4768401@example.com</p>
+        </div>
+
+        <div class="info-box">
+          <h4>Phone</h4>
+          <p>+91 95462 80588</p>
+        </div>
+
+        <div class="info-box">
+          <h4>Location</h4>
+          <p>India</p>
+        </div>
+      </div>
+
+      <!-- Right Side Form -->
+      <div class="contact-form">
+        <form>
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <textarea rows="5" placeholder="Your Message" required></textarea>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Ravi Study Hub | Designed by Ravi 🚀</p>
+</footer>
+
+<script>
+   /* Dark mode */
+const btn = document.getElementById("darkToggle");
+    btn.onclick = () => {
+      document.body.classList.toggle("dark");
+    };
+
+    /* scroll animation */
+    const faders = document.querySelectorAll(".fade");
+    window.addEventListener("scroll", () => {
+      faders.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < window.innerHeight - 100) {
+          el.classList.add("show");
+        }
+      });
+    });
+</script>
+
 </body>
 </html>
