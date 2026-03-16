@@ -10,7 +10,10 @@ body{
   color:#0f172a;
   transition:0.4s;
 }
-
+h1{
+  color: red;
+  text-align: center;
+}
 /* NAVBAR */
 .navbar{
   display:flex;
